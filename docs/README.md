@@ -1,14 +1,6 @@
-# gpassmanager
+# README
 
-Simple Password Manager cli Application
-
-## INSTALLING
-
-Using Go Password Manager is easy. First, use go get to install the latest version of the library. This command will install the `gpassmanager` generator executable along with the library and its dependencies:
-
-`go get -u github.com/mrinjamul/gpassmanager`
-
-## Usage
+## Get Started
 
     Simple Password Manager Application
 
@@ -27,11 +19,3 @@ Using Go Password Manager is easy. First, use go get to install the latest versi
     -h, --help            help for gpassmanager
 
     Use "gpassmanager [command] --help" for more information about a command.
-
-## CODE OF CONDUCT
-
-[CODE OF CONDUCT](CODE_OF_CONDUCT.md)
-
-## License
-
-- Apache-2.0
