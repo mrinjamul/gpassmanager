@@ -19,6 +19,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/mrinjamul/gpassmanager/gpm"
 	"github.com/spf13/cobra"
 )
 
@@ -31,14 +32,7 @@ var versionCmd = &cobra.Command{
 }
 
 func versionRun(cmd *cobra.Command, args []string) {
-	fmt.Println("version " + GetVersion())
-
-}
-
-// GetVersion returns version name, and code
-func GetVersion() string {
-	var version = "0.0.0"
-	return version
+	fmt.Println("gpassmanager version " + gpm.GetVersion())
 }
 
 func init() {
