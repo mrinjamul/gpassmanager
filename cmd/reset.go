@@ -38,7 +38,7 @@ var resetCmd = &cobra.Command{
 func resetRun(cmd *cobra.Command, args []string) {
 	colorFmt := color.New(color.FgRed, color.Bold)
 	var response string
-	colorFmt.Print("Do you can to clear all todos (y/n) : ")
+	colorFmt.Print("Do you can to erase all passwords (y/n) : ")
 	fmt.Scanln(&response)
 	switch strings.ToLower(response) {
 	case "y", "yes":
