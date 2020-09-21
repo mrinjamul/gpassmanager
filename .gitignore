@@ -14,3 +14,6 @@ gpassmanager
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# production build
+/releases
