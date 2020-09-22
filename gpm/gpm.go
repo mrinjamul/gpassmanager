@@ -39,7 +39,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "0.0.1-beta"
+	var version = "0.1.0"
 	return version
 }
 
@@ -158,8 +158,7 @@ func ReadPasswords(key []byte) ([]Account, error) {
 	}
 	plaintext, err := Decrypt(key, data)
 	if err != nil {
-		fmt.Println("Failed: Wrong Password")
-		os.Exit(1)
+		return []Account{}, err
 	}
 	var accounts []Account
 	if err := json.Unmarshal(plaintext, &accounts); err != nil {
