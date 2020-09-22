@@ -19,8 +19,11 @@ package cmd
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/mrinjamul/gpassmanager/gpm"
@@ -31,8 +34,10 @@ import (
 var exportCmd = &cobra.Command{
 	Use:   "export",
 	Short: "export your data to a file (master key will be also exported)",
-	Long:  `Usage: gpassmanager export "export filename"`,
-	Run:   exportRun,
+	Long: `Usage: gpassmanager export "export filename"
+	or
+gpassmanager export`,
+	Run: exportRun,
 }
 
 func exportRun(cmd *cobra.Command, args []string) {
@@ -49,16 +54,20 @@ func exportRun(cmd *cobra.Command, args []string) {
 		color.Red("Error: data does not exists !")
 		os.Exit(0)
 	}
-
-	if len(args) == 0 {
-		color.Red("Error: too short argument")
-		os.Exit(0)
-	}
 	if len(args) > 1 {
 		color.Red("Error: too much arguments")
 		os.Exit(0)
 	}
-	filename := args[0]
+
+	var filename string
+	if len(args) == 0 {
+		color.Yellow("Generating export with default file name in current directory.\n[Example: gpm-13-01-2000-000.gpm]")
+		currentTime := time.Now()
+		rand.Seed(time.Now().UTC().UnixNano())
+		filename = "gpm-" + currentTime.Format("02-01-2006") + "-" + strconv.Itoa(rand.Intn(100)) + ".gpm"
+	} else {
+		filename = args[0]
+	}
 	if len(filename) > 4 {
 		if filename[len(filename)-4:] != ".gpm" {
 			filename += ".gpm"

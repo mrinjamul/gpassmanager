@@ -31,8 +31,8 @@ import (
 var importCmd = &cobra.Command{
 	Use:   "import",
 	Short: "import data from a file",
-	Long:  `Usage: gpassmanager import "[export filename] or location"`,
-	Run:   importRun,
+	Long: `	 gpassmanager import "[file location]"`,
+	Run: importRun,
 }
 
 func importRun(cmd *cobra.Command, args []string) {

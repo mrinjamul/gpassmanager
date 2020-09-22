@@ -17,6 +17,7 @@ limitations under the License.
 package cmd
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -83,26 +84,41 @@ func addRun(cmd *cobra.Command, args []string) {
 		}
 		accounts = account
 	}
+
+	scanner := bufio.NewScanner(os.Stdin)
+
 	fmt.Print("Enter Account Name: ")
-	fmt.Scanln(&account.AccountName)
+	if scanner.Scan() {
+		account.AccountName = scanner.Text()
+	}
 	fmt.Print("Enter username: ")
-	fmt.Scanln(&account.UserName)
+	if scanner.Scan() {
+		account.UserName = scanner.Text()
+	}
 	if account.UserName == "" {
 		fmt.Println("username can't be empty!")
 		os.Exit(0)
 	}
 	fmt.Print("Enter password: ")
-	fmt.Scanln(&account.Password)
+	if scanner.Scan() {
+		account.Password = scanner.Text()
+	}
 	if account.Password == "" {
 		fmt.Println("password can't be empty!")
 		os.Exit(0)
 	}
 	fmt.Print("Enter email: ")
-	fmt.Scanln(&account.Email)
+	if scanner.Scan() {
+		account.Email = scanner.Text()
+	}
 	fmt.Print("Enter mobile no: ")
-	fmt.Scanln(&account.Phone)
+	if scanner.Scan() {
+		account.Phone = scanner.Text()
+	}
 	fmt.Print("Notes :")
-	fmt.Scanln(&account.Notes)
+	if scanner.Scan() {
+		account.Notes = scanner.Text()
+	}
 	fmt.Println()
 	gpm.LineBreak()
 	prompt := promptui.Select{

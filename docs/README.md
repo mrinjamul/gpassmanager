@@ -5,13 +5,14 @@ It's a very secure password manager.
 
 ## Get Started
 
-    Simple Password Manager Application version 0.2.0
+    Simple Password Manager Application version 0.3.0
 
     Usage:
     gpassmanager [command]
 
     Available Commands:
     add         Add new password
+    change      Change Master Password
     export      export your data to a file (master key will be also exported)
     help        Help about any command
     import      import data from a file
@@ -82,6 +83,21 @@ It's a very secure password manager.
     Global Flags:
         --config string   config file (default is $HOME/.gpassmanager.yaml)
 
+## Change Password
+
+    Change Master Password
+    Example, gpassmanager change --passwd
+
+    Usage:
+    gpassmanager change [flags]
+
+    Flags:
+    -h, --help     help for change
+    -p, --passwd   change master key for the Data
+
+    Global Flags:
+        --config string   config file (default is $HOME/.gpassmanager.yaml)
+
 ## Reset
 
     It's like a hard reset.
@@ -112,6 +128,8 @@ It's a very secure password manager.
 ## Export
 
     Usage: gpassmanager export "export filename"
+            or
+    gpassmanager export
 
     Usage:
     gpassmanager export [flags]
@@ -124,7 +142,7 @@ It's a very secure password manager.
 
 ## Import
 
-    Usage: gpassmanager import "[export filename] or location"
+    Usage: gpassmanager import "[file location]"
 
     Usage:
     gpassmanager import [flags]

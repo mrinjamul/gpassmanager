@@ -29,13 +29,14 @@ sudo mv gpassmanager /usr/bin
 
 ## Usage
 
-    Simple Password Manager Application version 0.2.0
+    Simple Password Manager Application version 0.3.0
 
     Usage:
     gpassmanager [command]
 
     Available Commands:
     add         Add new password
+    change      Change Master Password
     export      export your data to a file (master key will be also exported)
     help        Help about any command
     import      import data from a file
