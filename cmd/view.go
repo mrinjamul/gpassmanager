@@ -73,7 +73,7 @@ func viewRun(cmd *cobra.Command, args []string) {
 			fmt.Println("Email:", account.Email)
 		}
 		if account.Phone != "" {
-			fmt.Println("Mobile no:")
+			fmt.Println("Mobile no:", account.Phone)
 		}
 		if account.Notes != "" {
 			fmt.Println("Notes:", account.Notes)
