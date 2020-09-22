@@ -55,7 +55,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "0.3.0"
+	var version = "0.3.1"
 	return version
 }
 

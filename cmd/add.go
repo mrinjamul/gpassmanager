@@ -18,6 +18,7 @@ package cmd
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -44,7 +45,6 @@ func addRun(cmd *cobra.Command, args []string) {
 		gpm.CreateDatabase()
 	}
 	var account gpm.Account
-	var password string
 	var accounts []gpm.Account
 
 	data, err := ioutil.ReadFile(gpm.DatabaseFile)
@@ -54,21 +54,28 @@ func addRun(cmd *cobra.Command, args []string) {
 	}
 	if len(data) == 0 {
 		color.Red("Warning: If you forget your master password your data will be lost !!")
+		color.Yellow("Master password can contains characters and symbols.")
 		fmt.Println()
 	}
 	fmt.Print("password: ")
 	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))
 	fmt.Println()
 
-	password = string(bytePassword)
-	if password == "" {
+	if string(bytePassword) == "" {
 		color.Red("Error: you haven't entered password")
 		if len(data) == 0 {
 			color.Red("Master password can't be empty")
 		}
 		os.Exit(0)
 	}
-	if len(data) == 0 && len(password) < 6 {
+
+	if len(data) == 0 && bytes.ContainsAny(bytePassword, "0123456789") {
+		color.Red("Error: master key can't have numbers !!")
+		color.Yellow("Tips: Use passphrases instead")
+		os.Exit(0)
+	}
+
+	if len(data) == 0 && len(string(bytePassword)) < 6 {
 		color.Red("Master password must be greater than 5")
 		os.Exit(0)
 	}

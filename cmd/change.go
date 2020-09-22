@@ -17,6 +17,7 @@ limitations under the License.
 package cmd
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -69,12 +70,30 @@ func changeRun(cmd *cobra.Command, args []string) {
 			color.Red("Error: Password already in use !!")
 			os.Exit(0)
 		}
+
+		if string(byteNewPassword) == "" {
+			color.Red("Error: you haven't entered password")
+			os.Exit(0)
+		}
+
+		if bytes.ContainsAny(byteNewPassword, "0123456789") {
+			color.Red("Error: master key can't have numbers !!")
+			color.Yellow("Tips: Use passphrases instead")
+			os.Exit(0)
+		}
+
+		if len(string(byteNewPassword)) < 6 {
+			color.Red("Master password must be greater than 5")
+			os.Exit(0)
+		}
+
 		fmt.Print("Verify password: ")
 		byteVerifyPassword, _ := terminal.ReadPassword(int(syscall.Stdin))
 		fmt.Println()
 
 		if string(byteNewPassword) != string(byteVerifyPassword) {
 			color.Red("Error: both password is not same!")
+			os.Exit(0)
 		}
 
 		prompt := promptui.Select{
