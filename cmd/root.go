@@ -20,6 +20,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/mrinjamul/gpassmanager/gpm"
+
 	"github.com/spf13/cobra"
 
 	homedir "github.com/mitchellh/go-homedir"
@@ -33,7 +35,7 @@ var (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "gpassmanager",
-	Short: "Simple Password Manager Application",
+	Short: "Simple Password Manager Application version " + gpm.GetVersion(),
 	Long:  ``,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:

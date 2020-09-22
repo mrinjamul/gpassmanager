@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
 	"syscall"
 
 	"github.com/fatih/color"
@@ -62,11 +63,17 @@ func viewRun(cmd *cobra.Command, args []string) {
 		fmt.Println(err)
 		os.Exit(0)
 	}
-	for _, account := range accounts {
+	if len(accounts) == 0 {
+		fmt.Println("No passwords found !")
+		os.Exit(0)
+	}
+	for id, account := range accounts {
 		gpm.LineBreak()
+		fmt.Print("[" + strconv.Itoa(id+1) + "]" + "\t")
 		if account.AccountName != "" {
-			fmt.Println("Account:", account.AccountName)
+			fmt.Print("Account:", account.AccountName)
 		}
+		fmt.Println()
 		fmt.Println("username:", account.UserName)
 		fmt.Println("Password:", account.Password)
 		if account.Email != "" {

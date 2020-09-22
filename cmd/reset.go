@@ -31,7 +31,7 @@ var resetCmd = &cobra.Command{
 	Use:   "reset",
 	Short: "Erase all passwords including master key",
 	Long: `It's like a hard reset.
-	If you forget your master key then you have to perform a hard reset`,
+If you forget your master key then you have to perform a hard reset`,
 	Run: resetRun,
 }
 
