@@ -102,20 +102,16 @@ func removeRun(cmd *cobra.Command, args []string) {
 			if len(accounts) != 0 {
 				gpm.SavePasswords(bytePassword, accounts)
 			} else {
-				var res string
-				fmt.Print("All password removed!\nDo you want to remove the master key ? (y/n): ")
-				fmt.Scanln(&res)
-				switch strings.ToLower(res) {
-				case "y", "yes":
+				res := gpm.ConfirmPrompt("All password removed!\nDo you want to remove the master key ?")
+				if res {
 					err := gpm.CreateDatabase()
 					if err != nil {
 						fmt.Println(err)
 					}
-				case "n", "no":
-					gpm.SavePasswords(bytePassword, accounts)
-				default:
+				} else {
 					gpm.SavePasswords(bytePassword, accounts)
 				}
+
 			}
 
 		case "n", "no":

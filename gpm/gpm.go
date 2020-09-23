@@ -25,6 +25,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"golang.org/x/crypto/scrypt"
@@ -146,7 +147,7 @@ func CreateDatabase() error {
 
 // LineBreak prints lots of '-'
 func LineBreak() {
-	fmt.Println("------------------------------")
+	fmt.Println("----------------------------------------")
 }
 
 // SavePasswords save all password
@@ -187,4 +188,20 @@ func ReadPasswords(key []byte) ([]Account, error) {
 // RemoveAccount removes an acccount
 func RemoveAccount(slice []Account, s int) []Account {
 	return append(slice[:s], slice[s+1:]...)
+}
+
+// ConfirmPrompt will prompt to user for yes or no
+func ConfirmPrompt(message string) bool {
+	var response string
+	fmt.Print(message + " (yes/no) :")
+	fmt.Scanln(&response)
+
+	switch strings.ToLower(response) {
+	case "y", "yes":
+		return true
+	case "n", "no":
+		return false
+	default:
+		return false
+	}
 }

@@ -61,6 +61,16 @@ func addRun(cmd *cobra.Command, args []string) {
 	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))
 	fmt.Println()
 
+	if len(data) == 0 {
+		fmt.Print("Verify password: ")
+		byteVerifyPassword, _ := terminal.ReadPassword(int(syscall.Stdin))
+		fmt.Println()
+		if string(bytePassword) != string(byteVerifyPassword) {
+			color.Red("Error: both password isn't same !")
+			os.Exit(0)
+		}
+	}
+
 	if string(bytePassword) == "" {
 		color.Red("Error: you haven't entered password")
 		if len(data) == 0 {
@@ -79,6 +89,10 @@ func addRun(cmd *cobra.Command, args []string) {
 		color.Red("Master password must be greater than 5")
 		os.Exit(0)
 	}
+	if len(data) == 0 {
+		color.Green("New User created successfully !")
+	}
+
 	if len(data) != 0 && gpm.VerifyKey(bytePassword, data) == false {
 		color.Red("Error: Wrong password !")
 		os.Exit(1)
