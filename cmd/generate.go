@@ -46,6 +46,12 @@ func generateRun(cmd *cobra.Command, args []string) {
 		err        error
 	)
 
+	if len(args) > 1 {
+		color.Red("Error: too much arguments")
+		color.Yellow("Usage: gpassmanager generate [password length]")
+		os.Exit(0)
+	}
+
 	if len(args) != 0 {
 		passLength, err = strconv.Atoi(args[0])
 		if err != nil {
@@ -78,10 +84,8 @@ func generateRun(cmd *cobra.Command, args []string) {
 	// 	}
 	// }
 
-	fmt.Println(passLength)
-
 	pass := gpm.GeneratePassword(passLength)
-	fmt.Println("Password: " + pass + "\n")
+	fmt.Println("Password: " + pass + "")
 
 	if _, err := os.Stat(gpm.DatabaseFile); os.IsNotExist(err) {
 		gpm.CreateDatabase()

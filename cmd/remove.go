@@ -42,12 +42,12 @@ var removeCmd = &cobra.Command{
 func removeRun(cmd *cobra.Command, args []string) {
 	if len(args) == 0 {
 		color.Red("Error: too short argument")
-		color.Yellow("Usaage: gpassmanager remove [id]")
+		color.Yellow("Usage: gpassmanager remove [id]")
 		os.Exit(0)
 	}
 	if len(args) > 1 {
 		color.Red("Error: too much arguments")
-		color.Yellow("Usaage: gpassmanager remove [id]")
+		color.Yellow("Usage: gpassmanager remove [id]")
 		os.Exit(0)
 	}
 	i, err := strconv.Atoi(args[0])
