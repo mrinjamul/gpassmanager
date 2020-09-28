@@ -5,6 +5,8 @@ Simple Password Manager Application
 A Commandline application for managing your passwords securely.
 It's a very secure password manager.
 
+Using gpassmanager, you can also generate secure passwords with given length.
+
 ## INSTALLING
 
 #### Installing from go
@@ -29,7 +31,7 @@ sudo mv gpassmanager /usr/bin
 
 ## Usage
 
-    Simple Password Manager Application version 0.3.0
+    Simple Password Manager Application version 0.4.0
 
     Usage:
     gpassmanager [command]
@@ -38,6 +40,7 @@ sudo mv gpassmanager /usr/bin
     add         Add new password
     change      Change Master Password
     export      export your data to a file (master key will be also exported)
+    generate    Generate secure password
     help        Help about any command
     import      import data from a file
     remove      remove an Account from password manager
