@@ -113,3 +113,32 @@ func TestRemoveAccount(t *testing.T) {
 func TestConfirmPrompt(t *testing.T) {
 
 }
+
+// TestGeneratePassword will return Password
+func TestGeneratePassword(t *testing.T) {
+	pass := GeneratePassword(0)
+	if pass == "" {
+		t.Errorf("Want string but got nil")
+	}
+	if len(pass) != 12 {
+		t.Errorf("Want 12 length of string but got %d", len(pass))
+	}
+
+	pass = GeneratePassword(16)
+	if pass == "" {
+		t.Errorf("Want string but got nil")
+	}
+	if len(pass) != 16 {
+		t.Errorf("Want 12 length of string but got %d", len(pass))
+	}
+
+	for i := 1; i < 8; i++ {
+		pass = GeneratePassword(i)
+		if pass == "" {
+			t.Errorf("Want string but got nil")
+		}
+		if len(pass) != 8 {
+			t.Errorf("Want 8 length of string but got %d", len(pass))
+		}
+	}
+}

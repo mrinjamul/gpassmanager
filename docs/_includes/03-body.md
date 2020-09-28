@@ -1,6 +1,6 @@
 ## Get Started
 
-    Simple Password Manager Application version 0.3.0
+    Simple Password Manager Application version 0.4.0
 
     Usage:
     gpassmanager [command]
@@ -9,6 +9,7 @@
     add         Add new password
     change      Change Master Password
     export      export your data to a file (master key will be also exported)
+    generate    Generate secure password
     help        Help about any command
     import      import data from a file
     remove      remove an Account from password manager
@@ -103,6 +104,22 @@
 
     Flags:
     -h, --help   help for reset
+
+    Global Flags:
+        --config string   config file (default is $HOME/.gpassmanager.yaml)
+
+## Generate
+
+    Generate secure password
+
+    Usage:
+    gpassmanager generate [flags]
+
+    Aliases:
+    generate, gen
+
+    Flags:
+    -h, --help   help for generate
 
     Global Flags:
         --config string   config file (default is $HOME/.gpassmanager.yaml)

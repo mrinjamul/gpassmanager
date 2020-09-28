@@ -24,8 +24,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	mathrand "math/rand"
 	"os"
 	"strings"
+	"time"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"golang.org/x/crypto/scrypt"
@@ -56,7 +58,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "0.3.1"
+	var version = "0.4.0"
 	return version
 }
 
@@ -204,4 +206,63 @@ func ConfirmPrompt(message string) bool {
 	default:
 		return false
 	}
+}
+
+// GeneratePassword will return Password
+func GeneratePassword(length int) string {
+	if length == 0 {
+		length = 12
+	}
+	if length < 8 {
+		length = 8
+	}
+
+	mathrand.Seed(time.Now().Unix())
+
+	var (
+		numberSet      = "0123456789"
+		lowerCharSet   = "abcdedfghijklmnopqrst"
+		upperCharSet   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		specialCharSet = "~!@#$%^&*()_+`-={}|[]\\:\"<>?/"
+		CharSet        = lowerCharSet + upperCharSet
+		// specialCharSet = "~!@#$%^&*()_+`-={}|[]\\:\"<>?,./"
+		// allCharSet     = CharSet + specialCharSet + numberSet
+	)
+
+	var (
+		minUpperCase    int    = (length - 4) / 4
+		minNum          int    = (length - 4) / 4
+		minSpecialChar  int    = (length - 4) / 4
+		remainingLength int    = length - minSpecialChar - minNum - minUpperCase
+		password        string = ""
+	)
+
+	for i := 0; i < minUpperCase; i++ {
+		random := mathrand.Intn(len(upperCharSet))
+		password += string(upperCharSet[random])
+	}
+
+	for i := 0; i < minNum; i++ {
+		random := mathrand.Intn(len(numberSet))
+		password += string(numberSet[random])
+	}
+
+	for i := 0; i < minSpecialChar; i++ {
+		random := mathrand.Intn(len(specialCharSet))
+		password += string(specialCharSet[random])
+	}
+
+	for i := 0; i < remainingLength; i++ {
+		random := mathrand.Intn(len(CharSet))
+		password += string(CharSet[random])
+	}
+
+	RunePassword := []rune(password)
+	mathrand.Shuffle(len(RunePassword), func(i, j int) {
+		RunePassword[i], RunePassword[j] = RunePassword[j], RunePassword[i]
+	})
+
+	password = string(RunePassword)
+
+	return password
 }
