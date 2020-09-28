@@ -31,7 +31,7 @@ sudo mv gpassmanager /usr/bin
 
 ## Usage
 
-    Simple Password Manager Application version 0.4.0
+    Simple Password Manager Application version 0.4.1
 
     Usage:
     gpassmanager [command]

@@ -26,6 +26,7 @@ import (
 	"log"
 	mathrand "math/rand"
 	"os"
+	"sort"
 	"strings"
 	"time"
 
@@ -58,7 +59,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "0.4.0"
+	var version = "0.4.1"
 	return version
 }
 
@@ -265,4 +266,27 @@ func GeneratePassword(length int) string {
 	password = string(RunePassword)
 
 	return password
+}
+
+// SortSlice sort arrays
+func SortSlice(slice []int) []int {
+	sort.Slice(slice, func(i, j int) bool { return slice[i] > slice[j] })
+	return slice
+}
+
+// RemoveDuplicate removes duplicate from slice
+func RemoveDuplicate(slice []int) []int {
+	keys := make(map[int]bool)
+	list := []int{}
+
+	// If the key(values of the slice) is not equal
+	// to the already present value in new slice (list)
+	// then we append it. else we jump on another element.
+	for _, entry := range slice {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
 }
