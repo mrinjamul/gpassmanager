@@ -42,20 +42,31 @@ var removeCmd = &cobra.Command{
 func removeRun(cmd *cobra.Command, args []string) {
 	if len(args) == 0 {
 		color.Red("Error: too short argument")
-		color.Yellow("Usage: gpassmanager remove [id]")
+		color.Yellow("Usage: gpassmanager remove [id] [id] ...")
 		os.Exit(0)
 	}
-	if len(args) > 1 {
-		color.Red("Error: too much arguments")
-		color.Yellow("Usage: gpassmanager remove [id]")
-		os.Exit(0)
-	}
-	i, err := strconv.Atoi(args[0])
 
-	if err != nil {
-		color.Red(args[0] + " is not a valid id\ninvalid syntax")
-		os.Exit(0)
+	// if len(args) > 1 {
+	// 	color.Red("Error: too much arguments")
+	// 	color.Yellow("Usage: gpassmanager remove [id]")
+	// 	os.Exit(0)
+	// }
+
+	var rmList = []int{}
+
+	for arg := 0; arg < len(args); arg++ {
+		i, err := strconv.Atoi(args[arg])
+
+		if err != nil {
+			color.Red(args[0] + " is not a valid id\ninvalid syntax")
+			os.Exit(0)
+		}
+		rmList = append(rmList, i)
 	}
+
+	rmList = gpm.SortSlice(rmList)
+	rmList = gpm.RemoveDuplicate(rmList)
+
 	if _, err := os.Stat(gpm.DatabaseFile); os.IsNotExist(err) {
 		gpm.CreateDatabase()
 	}
@@ -85,46 +96,48 @@ func removeRun(cmd *cobra.Command, args []string) {
 		fmt.Println("No passwords found !")
 		os.Exit(0)
 	}
-	if i > 0 && i <= len(accounts) {
-		colorFmt := color.New(color.FgRed, color.Bold)
-		var response string
-		var accountName string = ""
-		username := accounts[i-1].UserName
-		if accounts[i-1].AccountName != "" {
-			accountName = " (" + accounts[i-1].AccountName + ")"
-		}
-		colorFmt.Print("Do you want to remove " + username + accountName + " (y/n) : ")
-		fmt.Scanln(&response)
-		switch strings.ToLower(response) {
-		case "y", "yes":
-			accounts = gpm.RemoveAccount(accounts, i-1)
-			color.Yellow("[" + strconv.Itoa(i) + "] " + username + " has been removed")
-			if len(accounts) != 0 {
-				gpm.SavePasswords(bytePassword, accounts)
-			} else {
-				res := gpm.ConfirmPrompt("All password removed!\nDo you want to remove the master key ?")
-				if res {
-					err := gpm.CreateDatabase()
-					if err != nil {
-						fmt.Println(err)
-					}
-				} else {
+
+	for _, i := range rmList {
+		if i > 0 && i <= len(accounts) {
+			colorFmt := color.New(color.FgRed, color.Bold)
+			var response string
+			var accountName string = ""
+			username := accounts[i-1].UserName
+			if accounts[i-1].AccountName != "" {
+				accountName = " (" + accounts[i-1].AccountName + ")"
+			}
+			colorFmt.Print("Do you want to remove " + username + accountName + " (y/n) : ")
+			fmt.Scanln(&response)
+			switch strings.ToLower(response) {
+			case "y", "yes":
+				accounts = gpm.RemoveAccount(accounts, i-1)
+				color.Yellow("[" + strconv.Itoa(i) + "] " + username + " has been removed")
+				if len(accounts) != 0 {
 					gpm.SavePasswords(bytePassword, accounts)
+				} else {
+					res := gpm.ConfirmPrompt("All password removed!\nDo you want to remove the master key ?")
+					if res {
+						err := gpm.CreateDatabase()
+						if err != nil {
+							fmt.Println(err)
+						}
+					} else {
+						gpm.SavePasswords(bytePassword, accounts)
+					}
+
 				}
 
+			case "n", "no":
+				colorFmt = color.New(color.FgGreen)
+				colorFmt.Println("Operation Canceled")
+			default:
+				colorFmt = color.New(color.FgGreen)
+				colorFmt.Println("Operation Canceled")
 			}
-
-		case "n", "no":
-			colorFmt = color.New(color.FgGreen)
-			colorFmt.Println("Operation Canceled")
-		default:
-			colorFmt = color.New(color.FgGreen)
-			colorFmt.Println("Operation Canceled")
+		} else {
+			color.Red("[" + strconv.Itoa(i) + "] does not match any Account !")
 		}
-	} else {
-		color.Red("[" + strconv.Itoa(i) + "] does not match any Account !")
 	}
-
 }
 
 func init() {

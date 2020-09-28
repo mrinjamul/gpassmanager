@@ -142,3 +142,34 @@ func TestGeneratePassword(t *testing.T) {
 		}
 	}
 }
+
+// TestSortSlice sort arrays
+func TestSortSlice(t *testing.T) {
+	slice := []int{4, 2, 8, 3, 8, 5, 2, 1}
+	slice = SortSlice(slice)
+	want := []int{8, 8, 5, 4, 3, 2, 2, 1}
+	if len(slice) != len(want) {
+		t.Errorf("Both result is not same")
+	}
+	for i := range slice {
+		if slice[i] != want[i] {
+			t.Errorf("Want %d but got %d", want[i], slice[i])
+		}
+	}
+}
+
+// TestRemoveDuplicate removes duplicate from slice
+func TestRemoveDuplicate(t *testing.T) {
+	slice := []int{4, 2, 8, 3, 8, 5, 2, 1}
+	slice = SortSlice(slice)
+	slice = RemoveDuplicate(slice)
+	want := []int{8, 5, 4, 3, 2, 1}
+	if len(slice) != len(want) {
+		t.Errorf("Both result is not same")
+	}
+	for i := range want {
+		if slice[i] != want[i] {
+			t.Errorf("Want %d but got %d", want[i], slice[i])
+		}
+	}
+}
