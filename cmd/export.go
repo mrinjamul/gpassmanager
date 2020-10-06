@@ -68,13 +68,11 @@ func exportRun(cmd *cobra.Command, args []string) {
 	} else {
 		filename = args[0]
 	}
-	if len(filename) > 4 {
-		if filename[len(filename)-4:] != ".gpm" {
-			filename += ".gpm"
-		}
-	} else {
-		filename += ".gpm"
-	}
+
+	// simplify filename
+	filename = gpm.GetFileName(filename, ".gpm")
+
+	// check if file exists
 	if _, err := os.Stat(filename); err == nil {
 		fmt.Println(filename, "already exists !")
 		var response string

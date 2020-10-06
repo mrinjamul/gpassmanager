@@ -1,6 +1,6 @@
 ## Get Started
 
-    Simple Password Manager Application version 0.4.1
+    Simple Password Manager Application version 0.5.0
 
     Usage:
     gpassmanager [command]
@@ -11,7 +11,7 @@
     export      export your data to a file (master key will be also exported)
     generate    Generate secure password
     help        Help about any command
-    import      import data from a file
+    import      import password(s) from a file
     remove      remove an Account from password manager
     reset       Erase all passwords including master key
     version     Prints version
@@ -154,12 +154,13 @@
 
 ## Import
 
-    Usage: gpassmanager import "[file location]"
+    gpassmanager import "[file location]"
 
     Usage:
     gpassmanager import [flags]
 
     Flags:
+    -c, --csv    Import CSV file into the password manager (Currently Google password csv file is supported)
     -h, --help   help for import
 
     Global Flags:

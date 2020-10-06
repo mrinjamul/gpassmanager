@@ -30,6 +30,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gocarina/gocsv"
 	homedir "github.com/mitchellh/go-homedir"
 	"golang.org/x/crypto/scrypt"
 )
@@ -42,6 +43,14 @@ type Account struct {
 	Phone       string
 	Password    string
 	Notes       string
+}
+
+// CSVPassword contains csv parsed passwords
+type CSVPassword struct {
+	Name     string `csv:"name"`
+	URL      string `csv:"url"`
+	Username string `csv:"username"`
+	Password string `csv:"password"`
 }
 
 // DatabaseFile is the db file
@@ -59,7 +68,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "0.4.1"
+	var version = "0.5.0"
 	return version
 }
 
@@ -289,4 +298,55 @@ func RemoveDuplicate(slice []int) []int {
 		}
 	}
 	return list
+}
+
+// GetFileName simplify filenames for use (Note: only 3 char ext)
+func GetFileName(filename, extension string) string {
+	if len(filename) > 4 {
+		if filename[len(filename)-4:] != extension {
+			filename += extension
+		}
+	} else {
+		filename += extension
+	}
+	return filename
+}
+
+//ReadCSV returns parsed Passwords (*Google Password csv file)
+func ReadCSV(filename string) ([]CSVPassword, error) {
+	passFile, err := os.OpenFile(filename, os.O_RDWR|os.O_CREATE, os.ModePerm)
+	if err != nil {
+		panic(err)
+	}
+	defer passFile.Close()
+
+	passwords := []CSVPassword{}
+
+	if err := gocsv.UnmarshalFile(passFile, &passwords); err != nil {
+		return []CSVPassword{}, err
+	}
+	return passwords, nil
+}
+
+/*
+ * Google Password csv file structure
+ *
+ * name,url,username,password
+ *
+ * name | url | username | password
+ * ---- | --- | -------- | --------
+ */
+
+// ConvertToAccount converts CSVPassword into Account
+func ConvertToAccount(csvpasswords []CSVPassword) []Account {
+	var accounts []Account
+	for _, csvpassword := range csvpasswords {
+		var account Account
+		account.AccountName = csvpassword.Name
+		account.UserName = csvpassword.Username
+		account.Password = csvpassword.Password
+		account.Notes = csvpassword.URL
+		accounts = append(accounts, account)
+	}
+	return accounts
 }

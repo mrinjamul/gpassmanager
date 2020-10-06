@@ -31,7 +31,7 @@ sudo mv gpassmanager /usr/bin
 
 ## Usage
 
-    Simple Password Manager Application version 0.4.1
+    Simple Password Manager Application version 0.5.0
 
     Usage:
     gpassmanager [command]
@@ -42,7 +42,7 @@ sudo mv gpassmanager /usr/bin
     export      export your data to a file (master key will be also exported)
     generate    Generate secure password
     help        Help about any command
-    import      import data from a file
+    import      import password(s) from a file
     remove      remove an Account from password manager
     reset       Erase all passwords including master key
     version     Prints version
