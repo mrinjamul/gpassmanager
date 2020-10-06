@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/fatih/color v1.7.0
+	github.com/gocarina/gocsv v0.0.0-20200925213129-04be9ee2e1a2
 	github.com/manifoldco/promptui v0.7.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.0.0

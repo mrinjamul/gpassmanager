@@ -5,7 +5,10 @@
 *.so
 *.dylib
 *.bin
+
+# data
 *.gpm
+*.csv
 
 # Test binary, built with `go test -c`
 *.test

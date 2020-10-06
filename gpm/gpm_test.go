@@ -81,16 +81,17 @@ func TestCreateDatabase(t *testing.T) {
 	// if err != nil {
 	// 	t.Errorf("Want nil but got error")
 	// }
+	// TODO
 }
 
 // TestSavePasswords save all password
 func TestSavePasswords(t *testing.T) {
-
+	// TODO
 }
 
 // TestReadPasswords save all password
 func TestReadPasswords(t *testing.T) {
-
+	// TODO
 }
 
 // RemoveAccount removes an acccount
@@ -111,7 +112,7 @@ func TestRemoveAccount(t *testing.T) {
 
 // TestConfirmPrompt will prompt to user for yes or no
 func TestConfirmPrompt(t *testing.T) {
-
+	// TODO
 }
 
 // TestGeneratePassword will return Password
@@ -171,5 +172,48 @@ func TestRemoveDuplicate(t *testing.T) {
 		if slice[i] != want[i] {
 			t.Errorf("Want %d but got %d", want[i], slice[i])
 		}
+	}
+}
+
+// TestTGetFileName simplify filenames for use (Note: only 3 char ext)
+func TestGetFileName(t *testing.T) {
+	testcases := []struct {
+		name     string
+		filename string
+		ext      string
+		result   string
+	}{
+		{"smaller file name (gpm)", "abc", ".gpm", "abc.gpm"},
+		{"smaller file name with extensions (gpm)", "abc.gpm", ".gpm", "abc.gpm"},
+		{"normal file name (gpm)", "backup", ".gpm", "backup.gpm"},
+		{"normal file name with extensions (gpm)", "backup.gpm", ".gpm", "backup.gpm"},
+
+		{"smaller file name (csv)", "abc", ".csv", "abc.csv"},
+		{"smaller file name with extensions (csv)", "abc.csv", ".csv", "abc.csv"},
+		{"normal file name (csv)", "backup", ".csv", "backup.csv"},
+		{"normal file name with extensions (csv)", "backup.csv", ".csv", "backup.csv"},
+	}
+
+	for _, testcase := range testcases {
+		t.Run(testcase.name, func(t *testing.T) {
+			filename := GetFileName(testcase.filename, testcase.ext)
+			if filename != testcase.result {
+				t.Errorf("Wants to be %v; but got %v", testcase.result, filename)
+			}
+		})
+	}
+}
+
+//TestReadCSV returns parsed Passwords (*Google Password csv file)
+func TestReadCSV(t *testing.T) {
+	// TODO
+}
+
+// TestConvertToAccount converts CSVPassword into Account
+func TestConvertToAccount(t *testing.T) {
+	var csvPass []CSVPassword = make([]CSVPassword, 10)
+	testAccounts := ConvertToAccount(csvPass)
+	if len(testAccounts) != 10 {
+		t.Errorf("Accounts should be same number of password; but go %v", len(testAccounts))
 	}
 }
