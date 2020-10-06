@@ -7,6 +7,16 @@ It's a very secure password manager.
 
 Using gpassmanager, you can also generate secure passwords with given length.
 
+Now, you can import passwords from google accounts (Google Chrome passwords).
+
+First, you need to export the passwords as csv file.
+
+Then, import into gpassmanager by running the following,
+
+```sh
+gpassmanager import --csv [csv filename]
+```
+
 ## INSTALLING
 
 #### Installing from go
@@ -17,17 +27,32 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 
 #### Installing from Binaries
 
-[Releases](https://github.com/mrinjamul/gpassmanager/releases)
-
-Download for your platform and put the executable file into your env `$PATH` .
+[Download](https://github.com/mrinjamul/gpassmanager/releases) for your platform
 
 For Linux,
 
 ```sh
-unzip gpassmanager-linux-[whatever].zip
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.5.0/gpassmanager-linux-amd64-current.zip
+unzip gpassmanager-linux-amd64-current.zip
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
+
+or you can put the executable file into your env variables `$PATH`
+
+For Android (Termux),
+
+You need to have `zip unzip wget`. To install simply type `pkg install zip unzip wget`
+
+```sh
+cd ~
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.5.0/gpassmanager-linux-arm-current.zip
+unzip gpassmanager-linux-arm-current.zip
+chmod +x gpassmanager
+mv gpassmanager ../usr/bin
+```
+
+[Note: if new version available you need to download and install by the same process. The above instructions will install v0.5.0 .]
 
 ## Usage
 
