@@ -46,24 +46,19 @@ func removeRun(cmd *cobra.Command, args []string) {
 		os.Exit(0)
 	}
 
-	// if len(args) > 1 {
-	// 	color.Red("Error: too much arguments")
-	// 	color.Yellow("Usage: gpassmanager remove [id]")
-	// 	os.Exit(0)
-	// }
-
+	// create  remove lists for batch remove purpose
 	var rmList = []int{}
 
 	for arg := 0; arg < len(args); arg++ {
 		i, err := strconv.Atoi(args[arg])
 
 		if err != nil {
-			color.Red(args[0] + " is not a valid id\ninvalid syntax")
+			color.Red(args[arg] + " is not a valid id\ninvalid syntax")
 			os.Exit(0)
 		}
 		rmList = append(rmList, i)
 	}
-
+	// sort and remove duplicate
 	rmList = gpm.SortSlice(rmList)
 	rmList = gpm.RemoveDuplicate(rmList)
 
@@ -96,7 +91,7 @@ func removeRun(cmd *cobra.Command, args []string) {
 		fmt.Println("No passwords found !")
 		os.Exit(0)
 	}
-
+	// remove process
 	for _, i := range rmList {
 		if i > 0 && i <= len(accounts) {
 			colorFmt := color.New(color.FgRed, color.Bold)
@@ -122,7 +117,7 @@ func removeRun(cmd *cobra.Command, args []string) {
 							fmt.Println(err)
 						}
 					} else {
-						gpm.SavePasswords(bytePassword, accounts)
+						gpm.SavePasswords(bytePassword, accounts) // save new accounts
 					}
 
 				}
