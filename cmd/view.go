@@ -105,7 +105,7 @@ func viewRun(cmd *cobra.Command, args []string) {
 			viewList = append(viewList, i-1)
 		}
 		viewList = gpm.RemoveDuplicate(viewList)
-		fmt.Println(viewList)
+		// fmt.Println(viewList)
 		for _, id := range viewList {
 			gpm.LineBreak()
 			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + accounts[id].AccountName)
