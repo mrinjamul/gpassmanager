@@ -74,7 +74,7 @@ func viewRun(cmd *cobra.Command, args []string) {
 			fmt.Print("Account:", account.AccountName)
 		}
 		fmt.Println()
-		fmt.Println("username:", account.UserName)
+		fmt.Println("Username:", account.UserName)
 		fmt.Println("Password:", account.Password)
 		if account.Email != "" {
 			fmt.Println("Email:", account.Email)

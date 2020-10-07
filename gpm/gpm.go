@@ -37,12 +37,12 @@ import (
 
 // Account contains all details for a account
 type Account struct {
-	AccountName string
-	UserName    string
-	Email       string
-	Phone       string
-	Password    string
-	Notes       string
+	AccountName string `json:"account_name"`
+	UserName    string `json:"username"`
+	Email       string `json:"email"`
+	Phone       string `json:"phone"`
+	Password    string `json:"password"`
+	Notes       string `json:"notes"`
 }
 
 // CSVPassword contains csv parsed passwords
