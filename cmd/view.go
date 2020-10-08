@@ -32,15 +32,19 @@ import (
 // viewCmd represents the view command
 var viewCmd = &cobra.Command{
 	Use:   "view",
-	Short: "view all passwords",
-	Long:  ``,
-	Run:   viewRun,
+	Short: "view a particular password or entire passwords",
+	Long: `view a particular password or entire passwords
+Example: gpassmanager view
+then gpassmanager view 1`,
+	Run: viewRun,
 }
 
 func viewRun(cmd *cobra.Command, args []string) {
+	// Check if database exists or create
 	if _, err := os.Stat(gpm.DatabaseFile); os.IsNotExist(err) {
 		gpm.CreateDatabase()
 	}
+	// Get raw data for checking
 	data, err := ioutil.ReadFile(gpm.DatabaseFile)
 	if err != nil {
 		fmt.Println(err)
@@ -50,14 +54,16 @@ func viewRun(cmd *cobra.Command, args []string) {
 		fmt.Println("No passwords found !")
 		os.Exit(0)
 	}
+	// secure user input
 	fmt.Print("password: ")
 	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))
 	fmt.Println()
-
+	// password verifications
 	if len(data) != 0 && gpm.VerifyKey(bytePassword, data) == false {
 		color.Red("Error: Wrong password !")
 		os.Exit(1)
 	}
+	// decrypt and get All accounts
 	accounts, err := gpm.ReadPasswords(bytePassword)
 	if err != nil {
 		fmt.Println(err)
@@ -67,27 +73,63 @@ func viewRun(cmd *cobra.Command, args []string) {
 		fmt.Println("No passwords found !")
 		os.Exit(0)
 	}
-	for id, account := range accounts {
-		gpm.LineBreak()
-		fmt.Print("[" + strconv.Itoa(id+1) + "]" + "\t")
-		if account.AccountName != "" {
-			fmt.Print("Account:", account.AccountName)
+	// Show as per instructions
+	if viewAll {
+		// View all passwords
+		for id, account := range accounts {
+			gpm.LineBreak()
+			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName)
+			fmt.Println("Username:", account.UserName)
+			fmt.Println("Password:", account.Password)
+			if account.Email != "" {
+				fmt.Println("Email:", account.Email)
+			}
+			if account.Phone != "" {
+				fmt.Println("Mobile no:", account.Phone)
+			}
+			if account.Notes != "" {
+				fmt.Println("Notes:", account.Notes)
+			}
+			gpm.LineBreak()
 		}
-		fmt.Println()
-		fmt.Println("Username:", account.UserName)
-		fmt.Println("Password:", account.Password)
-		if account.Email != "" {
-			fmt.Println("Email:", account.Email)
+	} else if len(args) == 0 { // print only lists with index
+		for id, account := range accounts {
+			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName)
 		}
-		if account.Phone != "" {
-			fmt.Println("Mobile no:", account.Phone)
+	} else {
+		viewList := []int{}
+		for id := range args {
+			i, err := strconv.Atoi(args[id])
+			if err != nil || i == 0 {
+				color.Red(args[id] + " is not a valid id\ninvalid syntax")
+				os.Exit(0)
+			}
+			viewList = append(viewList, i-1)
 		}
-		if account.Notes != "" {
-			fmt.Println("Notes:", account.Notes)
+		viewList = gpm.RemoveDuplicate(viewList)
+		// fmt.Println(viewList)
+		for _, id := range viewList {
+			gpm.LineBreak()
+			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + accounts[id].AccountName)
+			fmt.Println("Username:", accounts[id].UserName)
+			fmt.Println("Password:", accounts[id].Password)
+			if accounts[id].Email != "" {
+				fmt.Println("Email:", accounts[id].Email)
+			}
+			if accounts[id].Phone != "" {
+				fmt.Println("Mobile no:", accounts[id].Phone)
+			}
+			if accounts[id].Notes != "" {
+				fmt.Println("Notes:", accounts[id].Notes)
+			}
+			gpm.LineBreak()
 		}
-		gpm.LineBreak()
 	}
 }
+
+var (
+	viewAll bool
+)
 
 func init() {
 	rootCmd.AddCommand(viewCmd)
@@ -101,4 +143,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// viewCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	viewCmd.Flags().BoolVarP(&viewAll, "all", "a", false, "view all passwords in the store")
 }

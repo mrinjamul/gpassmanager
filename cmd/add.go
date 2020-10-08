@@ -44,23 +44,26 @@ func addRun(cmd *cobra.Command, args []string) {
 	if _, err := os.Stat(gpm.DatabaseFile); os.IsNotExist(err) {
 		gpm.CreateDatabase()
 	}
+	// required variables
 	var account gpm.Account
 	var accounts []gpm.Account
-
+	// Gets RAW datas
 	data, err := ioutil.ReadFile(gpm.DatabaseFile)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	// Check if data is null
 	if len(data) == 0 {
 		color.Red("Warning: If you forget your master password your data will be lost !!")
 		color.Yellow("Master password can contains characters and symbols.")
 		fmt.Println()
 	}
+	// Takes password as user input
 	fmt.Print("password: ")
 	bytePassword, _ := terminal.ReadPassword(int(syscall.Stdin))
 	fmt.Println()
-
+	// if database empty, create new one
 	if len(data) == 0 {
 		fmt.Print("Verify password: ")
 		byteVerifyPassword, _ := terminal.ReadPassword(int(syscall.Stdin))
@@ -70,7 +73,7 @@ func addRun(cmd *cobra.Command, args []string) {
 			os.Exit(0)
 		}
 	}
-
+	// Check if password is nil
 	if string(bytePassword) == "" {
 		color.Red("Error: you haven't entered password")
 		if len(data) == 0 {
@@ -78,13 +81,17 @@ func addRun(cmd *cobra.Command, args []string) {
 		}
 		os.Exit(0)
 	}
-
+	// master key can't have numbers
+	/*
+		(there is a problem in encryption algo)
+		need to figure out fix !
+	*/
 	if len(data) == 0 && bytes.ContainsAny(bytePassword, "0123456789") {
 		color.Red("Error: master key can't have numbers !!")
 		color.Yellow("Tips: Use passphrases instead")
 		os.Exit(0)
 	}
-
+	// password required
 	if len(data) == 0 && len(string(bytePassword)) < 6 {
 		color.Red("Master password must be greater than 5")
 		os.Exit(0)
@@ -92,11 +99,12 @@ func addRun(cmd *cobra.Command, args []string) {
 	if len(data) == 0 {
 		color.Green("New User created successfully !")
 	}
-
+	// password verifications
 	if len(data) != 0 && gpm.VerifyKey(bytePassword, data) == false {
 		color.Red("Error: Wrong password !")
 		os.Exit(1)
 	}
+	// if password is currect, get data
 	if len(data) != 0 && gpm.VerifyKey(bytePassword, data) {
 		account, err := gpm.ReadPasswords(bytePassword)
 		if err != nil {
@@ -105,12 +113,16 @@ func addRun(cmd *cobra.Command, args []string) {
 		}
 		accounts = account
 	}
-
+	// scanner for taking user input as line
 	scanner := bufio.NewScanner(os.Stdin)
 
 	fmt.Print("Enter Account Name: ")
 	if scanner.Scan() {
 		account.AccountName = scanner.Text()
+	}
+	if account.AccountName == "" {
+		fmt.Println("Account Name can't be empty!")
+		os.Exit(0)
 	}
 	fmt.Print("Enter username: ")
 	if scanner.Scan() {
@@ -142,6 +154,7 @@ func addRun(cmd *cobra.Command, args []string) {
 	}
 	fmt.Println()
 	gpm.LineBreak()
+	// prompt for confirmations
 	prompt := promptui.Select{
 		Label: "Do you want to save (Yes/No)",
 		Items: []string{"Yes", "No"},

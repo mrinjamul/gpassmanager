@@ -56,7 +56,7 @@ mv gpassmanager ../usr/bin
 
 ## Usage
 
-    Simple Password Manager Application version 0.5.0
+    Simple Password Manager Application version 0.6.0
 
     Usage:
     gpassmanager [command]
@@ -70,6 +70,7 @@ mv gpassmanager ../usr/bin
     import      import password(s) from a file
     remove      remove an Account from password manager
     reset       Erase all passwords including master key
+    search      Search password account in the password store
     version     Prints version
     view        view all passwords
 
