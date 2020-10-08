@@ -32,9 +32,11 @@ import (
 // viewCmd represents the view command
 var viewCmd = &cobra.Command{
 	Use:   "view",
-	Short: "view all passwords",
-	Long:  ``,
-	Run:   viewRun,
+	Short: "view a particular password or entire passwords",
+	Long: `view a particular password or entire passwords
+Example: gpassmanager view
+then gpassmanager view 1`,
+	Run: viewRun,
 }
 
 func viewRun(cmd *cobra.Command, args []string) {

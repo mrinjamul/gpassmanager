@@ -1,6 +1,6 @@
 ## Get Started
 
-    Simple Password Manager Application version 0.5.0
+    Simple Password Manager Application version 0.6.0
 
     Usage:
     gpassmanager [command]
@@ -14,6 +14,7 @@
     import      import password(s) from a file
     remove      remove an Account from password manager
     reset       Erase all passwords including master key
+    search      Search password account in the password store
     version     Prints version
     view        view all passwords
 
@@ -52,12 +53,15 @@
 
 ## View
 
-    view all passwords
+    view a particular password or entire passwords
+    Example: gpassmanager view
+    then gpassmanager view 1
 
     Usage:
     gpassmanager view [flags]
 
     Flags:
+    -a, --all    view all passwords in the store
     -h, --help   help for view
 
     Global Flags:
@@ -75,6 +79,19 @@
 
     Flags:
     -h, --help   help for remove
+
+    Global Flags:
+        --config string   config file (default is $HOME/.gpassmanager.yaml)
+
+## Search
+
+    Search password account in the password store
+
+    Usage:
+    gpassmanager search [flags]
+
+    Flags:
+    -h, --help   help for search
 
     Global Flags:
         --config string   config file (default is $HOME/.gpassmanager.yaml)
