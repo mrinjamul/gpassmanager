@@ -22,3 +22,6 @@ gpassmanager
 
 # production build
 /releases
+/parts
+/prime
+*.snap
