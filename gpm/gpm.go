@@ -68,7 +68,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "0.6.0"
+	var version = "0.7.0"
 	return version
 }
 
@@ -349,4 +349,14 @@ func ConvertToAccount(csvpasswords []CSVPassword) []Account {
 		accounts = append(accounts, account)
 	}
 	return accounts
+}
+
+// Copy clone a file
+func Copy(src, dst string) error {
+	data, err := ioutil.ReadFile(src)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(dst, data, 0644)
+	return err
 }

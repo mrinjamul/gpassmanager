@@ -34,8 +34,8 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 For Linux,
 
 ```sh
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.5.0/gpassmanager-linux-amd64-current.zip
-unzip gpassmanager-linux-amd64-current.zip
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.0/gpassmanager-linux-amd64-v0.7.0.tar.gz
+tar xvf gpassmanager-linux-amd64-current.tar.gz
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
@@ -44,21 +44,21 @@ or you can put the executable file into your env variables `$PATH`
 
 For Android (Termux),
 
-You need to have `zip unzip wget`. To install simply type `pkg install zip unzip wget`
+You need to have `tar wget`. To install simply type `pkg install tar wget`
 
 ```sh
 cd ~
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.5.0/gpassmanager-linux-arm-current.zip
-unzip gpassmanager-linux-arm-current.zip
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.0/gpassmanager-linux-arm-v0.7.0.tar.gz
+tar xvf gpassmanager-linux-arm-current.tar.gz
 chmod +x gpassmanager
 mv gpassmanager ../usr/bin
 ```
 
-[Note: if new version available you need to download and install by the same process. The above instructions will install v0.5.0 .]
+[Note: if new version available you need to download and install by the same process. The above instructions will install v0.7.0 .]
 
 ## Usage
 
-    Simple Password Manager Application version 0.6.0
+    Simple Password Manager Application version 0.7.0
 
     Usage:
     gpassmanager [command]
