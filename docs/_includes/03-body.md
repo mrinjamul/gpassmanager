@@ -1,3 +1,40 @@
+## INSTALLING
+
+#### Installing from go
+
+Using Go Password Manager is easy. First, use `go get` to install the latest version. This command will install the `gpassmanager` and its dependencies:
+
+`go get -u github.com/mrinjamul/gpassmanager`
+
+#### Installing from Binaries
+
+[Download](https://github.com/mrinjamul/gpassmanager/releases) for your platform
+
+For Linux,
+
+```sh
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.0/gpassmanager-linux-amd64-v0.7.0.tar.gz
+tar xvf gpassmanager-linux-amd64-current.tar.gz
+chmod +x gpassmanager
+sudo mv gpassmanager /usr/bin
+```
+
+or you can put the executable file into your env variables `$PATH`
+
+For Android (Termux),
+
+You need to have `tar wget`. To install simply type `pkg install tar wget`
+
+```sh
+cd ~
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.0/gpassmanager-linux-arm-v0.7.0.tar.gz
+tar xvf gpassmanager-linux-arm-current.tar.gz
+chmod +x gpassmanager
+mv gpassmanager ../usr/bin
+```
+
+[Note: if new version available you need to download and install by the same process. The above instructions will install v0.7.0 .]
+
 ## Get Started
 
     Simple Password Manager Application version 0.6.0
@@ -120,7 +157,8 @@
     gpassmanager reset [flags]
 
     Flags:
-    -h, --help   help for reset
+    -h, --help      help for reset
+    -r, --restore   restore last reset database
 
     Global Flags:
         --config string   config file (default is $HOME/.gpassmanager.yaml)

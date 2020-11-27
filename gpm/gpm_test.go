@@ -217,3 +217,8 @@ func TestConvertToAccount(t *testing.T) {
 		t.Errorf("Accounts should be same number of password; but go %v", len(testAccounts))
 	}
 }
+
+// TestCopy test for copy
+func TestCopy(t *testing.T) {
+	// TODO
+}
