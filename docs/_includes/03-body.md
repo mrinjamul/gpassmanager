@@ -13,8 +13,8 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 For Linux,
 
 ```sh
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.0/gpassmanager-linux-amd64-v0.7.0.tar.gz
-tar xvf gpassmanager-linux-amd64-current.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.1/gpassmanager-linux-amd64-v0.7.1.tar.gz
+tar xvf gpassmanager-linux-amd64-v0.7.1.tar.gz
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
@@ -27,17 +27,18 @@ You need to have `tar wget`. To install simply type `pkg install tar wget`
 
 ```sh
 cd ~
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.0/gpassmanager-linux-arm-v0.7.0.tar.gz
-tar xvf gpassmanager-linux-arm-current.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.1/gpassmanager-linux-arm-v0.7.1.tar.gz
+tar xvf gpassmanager-linux-arm-v0.7.1.tar.gz
 chmod +x gpassmanager
 mv gpassmanager ../usr/bin
 ```
 
-[Note: if new version available you need to download and install by the same process. The above instructions will install v0.7.0 .]
+[Note: if new version available you need to download and install by the same process. The above instructions will install v0.7.1 .]
 
 ## Get Started
 
-    Simple Password Manager Application version 0.6.0
+    Simple Password Manager Application
+    Licensed under the Apache License, Version 2.0 (the "License");
 
     Usage:
     gpassmanager [command]
@@ -49,6 +50,7 @@ mv gpassmanager ../usr/bin
     generate    Generate secure password
     help        Help about any command
     import      import password(s) from a file
+    license     Print the license
     remove      remove an Account from password manager
     reset       Erase all passwords including master key
     search      Search password account in the password store
@@ -175,6 +177,19 @@ mv gpassmanager ../usr/bin
 
     Flags:
     -h, --help   help for generate
+
+    Global Flags:
+        --config string   config file (default is $HOME/.gpassmanager.yaml)
+
+## License
+
+    Print the license
+
+    Usage:
+    gpassmanager license [flags]
+
+    Flags:
+    -h, --help   help for license
 
     Global Flags:
         --config string   config file (default is $HOME/.gpassmanager.yaml)

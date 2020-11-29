@@ -12,6 +12,14 @@ func TestGetVersion(t *testing.T) {
 	}
 }
 
+// TestGetVersion tests
+func TestGetLincense(t *testing.T) {
+	out := GetLicense()
+	if out == "" || len(out) == 0 {
+		t.Errorf("Want strings but got nil")
+	}
+}
+
 // TestGetHomeDir tests
 func TestGetHomeDir(t *testing.T) {
 	out := GetHomeDir()

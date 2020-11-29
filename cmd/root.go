@@ -36,7 +36,8 @@ var (
 var rootCmd = &cobra.Command{
 	Use:   "gpassmanager",
 	Short: "Simple Password Manager Application version " + gpm.GetVersion(),
-	Long:  ``,
+	Long: ` Simple Password Manager Application
+ Licensed under the Apache License, Version 2.0 (the "License");`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
