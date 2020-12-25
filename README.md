@@ -1,4 +1,4 @@
-# gpassmanager
+# gpassmanager [![gpassmanager](https://snapcraft.io/gpassmanager/badge.svg)](https://snapcraft.io/gpassmanager)[![gpassmanager](https://snapcraft.io/gpassmanager/trending.svg?name=0)](https://snapcraft.io/gpassmanager)
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/gpassmanager)
 
