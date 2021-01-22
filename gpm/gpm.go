@@ -26,6 +26,8 @@ import (
 	"log"
 	mathrand "math/rand"
 	"os"
+	"os/exec"
+	"runtime"
 	"sort"
 	"strings"
 	"time"
@@ -180,8 +182,8 @@ func CreateDatabase() error {
 }
 
 // LineBreak prints lots of '-'
-func LineBreak() {
-	fmt.Println("----------------------------------------")
+func LineBreak() string {
+	return ("----------------------------------------\n")
 }
 
 // SavePasswords save all password
@@ -381,4 +383,28 @@ func Copy(src, dst string) error {
 	}
 	err = ioutil.WriteFile(dst, data, 0644)
 	return err
+}
+
+// ToPager pipe output to a pager
+func ToPager(data string) error {
+	cmd := exec.Command("less")
+
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("more")
+	} else if runtime.GOOS == "linux" || runtime.GOOS == "darwin" {
+		cmd = exec.Command("less")
+	}
+
+	cmd.Stdin = strings.NewReader(data)
+	cmd.Stdout = os.Stdout
+
+	err := cmd.Run()
+	return err
+}
+
+// PagerErrorLogger logs error to stdout
+func PagerErrorLogger(err error) {
+	fmt.Println(err)
+	fmt.Println("Please report this issue to https://github.com/mrinjamul/gpassmanager/issues/")
+	os.Exit(1)
 }

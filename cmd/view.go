@@ -75,26 +75,40 @@ func viewRun(cmd *cobra.Command, args []string) {
 	}
 	// Show as per instructions
 	if viewAll {
+		printable_data := "\n"
 		// View all passwords
 		for id, account := range accounts {
-			gpm.LineBreak()
-			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName)
-			fmt.Println("Username:", account.UserName)
-			fmt.Println("Password:", account.Password)
+			printable_data += gpm.LineBreak()
+			printable_data += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
+			printable_data += "Username: " + account.UserName + "\n"
+			printable_data += "Password: " + account.Password + "\n"
 			if account.Email != "" {
-				fmt.Println("Email:", account.Email)
+				printable_data += "Email: " + account.Email + "\n"
 			}
 			if account.Phone != "" {
-				fmt.Println("Mobile no:", account.Phone)
+				printable_data += "Mobile no: " + account.Phone + "\n"
 			}
 			if account.Notes != "" {
-				fmt.Println("Notes:", account.Notes)
+				printable_data += "Notes: " + account.Notes + "\n"
 			}
-			gpm.LineBreak()
+			printable_data += gpm.LineBreak()
+		}
+		printable_data += "\n"
+		err := gpm.ToPager(printable_data)
+		if err != nil {
+			gpm.PagerErrorLogger(err)
 		}
 	} else if len(args) == 0 { // print only lists with index
+		printable_data := "\n"
 		for id, account := range accounts {
-			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName)
+			printable_data += gpm.LineBreak()
+			printable_data += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
+		}
+		printable_data += gpm.LineBreak() + "\n"
+		err := gpm.ToPager(printable_data)
+		if err != nil {
+			gpm.PagerErrorLogger(err)
+
 		}
 	} else {
 		viewList := []int{}
@@ -108,21 +122,27 @@ func viewRun(cmd *cobra.Command, args []string) {
 		}
 		viewList = gpm.RemoveDuplicate(viewList)
 		// fmt.Println(viewList)
+		printable_data := "\n"
 		for _, id := range viewList {
-			gpm.LineBreak()
-			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + accounts[id].AccountName)
-			fmt.Println("Username:", accounts[id].UserName)
-			fmt.Println("Password:", accounts[id].Password)
+			printable_data += gpm.LineBreak()
+			printable_data += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + accounts[id].AccountName + "\n"
+			printable_data += "Username: " + accounts[id].UserName + "\n"
+			printable_data += "Password: " + accounts[id].Password + "\n"
 			if accounts[id].Email != "" {
-				fmt.Println("Email:", accounts[id].Email)
+				printable_data += "Email: " + accounts[id].Email + "\n"
 			}
 			if accounts[id].Phone != "" {
-				fmt.Println("Mobile no:", accounts[id].Phone)
+				printable_data += "Mobile no: " + accounts[id].Phone + "\n"
 			}
 			if accounts[id].Notes != "" {
-				fmt.Println("Notes:", accounts[id].Notes)
+				printable_data += "Notes: " + accounts[id].Notes + "\n"
 			}
-			gpm.LineBreak()
+			printable_data += gpm.LineBreak()
+		}
+		printable_data += "\n"
+		err := gpm.ToPager(printable_data)
+		if err != nil {
+			gpm.PagerErrorLogger(err)
 		}
 	}
 }
