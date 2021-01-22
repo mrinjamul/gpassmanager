@@ -153,7 +153,7 @@ func addRun(cmd *cobra.Command, args []string) {
 		account.Notes = scanner.Text()
 	}
 	fmt.Println()
-	gpm.LineBreak()
+	fmt.Println(gpm.LineBreak())
 	// prompt for confirmations
 	prompt := promptui.Select{
 		Label: "Do you want to save (Yes/No)",

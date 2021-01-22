@@ -86,17 +86,23 @@ func searchRun(cmd *cobra.Command, args []string) {
 	// results counts
 	var founds int = 0
 	// prints found results
+	printableData := "\n"
 	for id, account := range accounts {
 		if strings.Contains(account.AccountName, args[0]) || strings.Contains(account.Notes, args[0]) {
 			founds++
 			isFound = true
-			fmt.Println("[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName)
-			fmt.Println("Notes: " + account.Notes)
-			gpm.LineBreak()
+			printableData += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
+			printableData += "Notes: " + account.Notes + "\n"
+			printableData += gpm.LineBreak()
 		}
 	}
 	if isFound {
-		color.Green(" " + strconv.Itoa(founds) + " result(s) found !")
+		printableData = " " + strconv.Itoa(founds) + " result(s) found !" + "\n" + printableData
+		printableData += "\n"
+		err := gpm.ToPager(printableData)
+		if err != nil {
+			gpm.PagerErrorLogger(err)
+		}
 	} else {
 		color.Red("No result found !")
 	}

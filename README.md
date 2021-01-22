@@ -1,5 +1,12 @@
 # gpassmanager [![gpassmanager](https://snapcraft.io/gpassmanager/badge.svg)](https://snapcraft.io/gpassmanager)[![gpassmanager](https://snapcraft.io/gpassmanager/trending.svg?name=0)](https://snapcraft.io/gpassmanager) [![CodeFactor](https://www.codefactor.io/repository/github/mrinjamul/gpassmanager/badge)](https://www.codefactor.io/repository/github/mrinjamul/gpassmanager)
 
+[![build status](https://github.com/mrinjamul/gpassmanager/workflows/Go/badge.svg)]()
+[![go version](https://img.shields.io/github/go-mod/go-version/mrinjamul/gpassmanager.svg)](https://github.com/mrinjamul/gpassmanager)
+[![GoReportCard](https://goreportcard.com/badge/github.com/mrinjamul/gpassmanager)](https://goreportcard.com/report/github.com/mrinjamul/gpassmanager)
+[![Code style: standard](https://img.shields.io/badge/code%20style-standard-blue.svg)]()
+[![License: Apache 2](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://github.com/mrinjamul/gpassmanager/blob/master/LICENSE)
+[![Github all releases](https://img.shields.io/github/downloads/mrinjamul/gpassmanager/total.svg)](https://GitHub.com/mrinjamul/gpassmanager/releases/)
+
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/gpassmanager)
 
 Simple Password Manager Application
@@ -34,8 +41,8 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 For Linux,
 
 ```sh
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.1/gpassmanager-linux-amd64-v0.7.1.tar.gz
-tar xvf gpassmanager-linux-amd64-v0.7.1.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.1/gpassmanager-linux-amd64-v1.0.1.tar.gz
+tar xvf gpassmanager-linux-amd64-v1.0.1.tar.gz
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
@@ -48,13 +55,13 @@ You need to have `tar wget`. To install simply type `pkg install tar wget`
 
 ```sh
 cd ~
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v0.7.1/gpassmanager-linux-arm-v0.7.1.tar.gz
-tar xvf gpassmanager-linux-arm-v0.7.1.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.1/gpassmanager-linux-arm-v1.0.1.tar.gz
+tar xvf gpassmanager-linux-arm-v1.0.1.tar.gz
 chmod +x gpassmanager
 mv gpassmanager ../usr/bin
 ```
 
-[Note: if new version available you need to download and install by the same process. The above instructions will install v0.7.1 .]
+[Note: if new version available you need to download and install by the same process. The above instructions will install v1.0.1 .]
 
 ## Usage
 
