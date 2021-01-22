@@ -70,7 +70,7 @@ func GetHomeDir() string {
 
 // GetVersion returns version name, and code
 func GetVersion() string {
-	var version = "1.0.0"
+	var version = "1.0.1"
 	return version
 }
 
@@ -79,7 +79,7 @@ func GetLicense() string {
 	license := `
 	Simple Password Manager Application
 	
-	Copyright © 2020 Injamul Mohammad Mollah
+	Copyright © 2020 Injamul Mohammad Mollah <mrinjamul@gmail.com>
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
