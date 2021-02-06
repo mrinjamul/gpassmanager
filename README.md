@@ -41,8 +41,8 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 For Linux,
 
 ```sh
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.1/gpassmanager-linux-amd64-v1.0.1.tar.gz
-tar xvf gpassmanager-linux-amd64-v1.0.1.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.2/gpassmanager-linux-amd64-v1.0.2.tar.gz
+tar xvf gpassmanager-linux-amd64-v1.0.2.tar.gz
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
@@ -55,13 +55,13 @@ You need to have `tar wget`. To install simply type `pkg install tar wget`
 
 ```sh
 cd ~
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.1/gpassmanager-linux-arm-v1.0.1.tar.gz
-tar xvf gpassmanager-linux-arm-v1.0.1.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.2/gpassmanager-linux-arm-v1.0.2.tar.gz
+tar xvf gpassmanager-linux-arm-v1.0.2.tar.gz
 chmod +x gpassmanager
 mv gpassmanager ../usr/bin
 ```
 
-[Note: if new version available you need to download and install by the same process. The above instructions will install v1.0.1 .]
+[Note: if new version available you need to download and install by the same process. The above instructions will install v1.0.2 .]
 
 ## Usage
 

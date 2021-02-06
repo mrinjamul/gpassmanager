@@ -1,4 +1,3 @@
-// Package cmd ...
 /*
 Copyright © 2020 Injamul Mohammad Mollah
 
