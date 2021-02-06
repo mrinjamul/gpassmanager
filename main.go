@@ -1,3 +1,7 @@
+/*Package main ...
+ * A Simple CLI password Manager
+ */
+
 /*
 Copyright © 2020 Injamul Mohammad Mollah
 

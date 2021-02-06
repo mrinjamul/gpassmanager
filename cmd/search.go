@@ -1,4 +1,3 @@
-// Package cmd ...
 /*
 Copyright © 2020 Injamul Mohammad Mollah
 
@@ -88,7 +87,7 @@ func searchRun(cmd *cobra.Command, args []string) {
 	// prints found results
 	printableData := "\n"
 	for id, account := range accounts {
-		if strings.Contains(account.AccountName, args[0]) || strings.Contains(account.Notes, args[0]) {
+		if strings.Contains(account.AccountName, args[0]) || strings.Contains(account.UserName, args[0]) || strings.Contains(account.Notes, args[0]) {
 			founds++
 			isFound = true
 			printableData += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
