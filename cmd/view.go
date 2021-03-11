@@ -1,5 +1,5 @@
 /*
-Copyright © 2020 Injamul Mohammad Mollah
+Copyright © 2020-2021 Injamul Mohammad Mollah
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -74,37 +74,37 @@ func viewRun(cmd *cobra.Command, args []string) {
 	}
 	// Show as per instructions
 	if viewAll {
-		printable_data := "\n"
+		printableData := "\n"
 		// View all passwords
 		for id, account := range accounts {
-			printable_data += gpm.LineBreak()
-			printable_data += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
-			printable_data += "Username: " + account.UserName + "\n"
-			printable_data += "Password: " + account.Password + "\n"
+			printableData += gpm.LineBreak()
+			printableData += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
+			printableData += "Username: " + account.UserName + "\n"
+			printableData += "Password: " + account.Password + "\n"
 			if account.Email != "" {
-				printable_data += "Email: " + account.Email + "\n"
+				printableData += "Email: " + account.Email + "\n"
 			}
 			if account.Phone != "" {
-				printable_data += "Mobile no: " + account.Phone + "\n"
+				printableData += "Mobile no: " + account.Phone + "\n"
 			}
 			if account.Notes != "" {
-				printable_data += "Notes: " + account.Notes + "\n"
+				printableData += "Notes: " + account.Notes + "\n"
 			}
-			printable_data += gpm.LineBreak()
+			printableData += gpm.LineBreak()
 		}
-		printable_data += "\n"
-		err := gpm.ToPager(printable_data)
+		printableData += "\n"
+		err := gpm.ToPager(printableData)
 		if err != nil {
 			gpm.PagerErrorLogger(err)
 		}
 	} else if len(args) == 0 { // print only lists with index
-		printable_data := "\n"
+		printableData := "\n"
 		for id, account := range accounts {
-			printable_data += gpm.LineBreak()
-			printable_data += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
+			printableData += gpm.LineBreak()
+			printableData += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + account.AccountName + "\n"
 		}
-		printable_data += gpm.LineBreak() + "\n"
-		err := gpm.ToPager(printable_data)
+		printableData += gpm.LineBreak() + "\n"
+		err := gpm.ToPager(printableData)
 		if err != nil {
 			gpm.PagerErrorLogger(err)
 
@@ -117,29 +117,31 @@ func viewRun(cmd *cobra.Command, args []string) {
 				color.Red(args[id] + " is not a valid id\ninvalid syntax")
 				os.Exit(0)
 			}
-			viewList = append(viewList, i-1)
+			if i > 0 {
+				viewList = append(viewList, i-1)
+			}
 		}
 		viewList = gpm.RemoveDuplicate(viewList)
 		// fmt.Println(viewList)
-		printable_data := "\n"
+		printableData := "\n"
 		for _, id := range viewList {
-			printable_data += gpm.LineBreak()
-			printable_data += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + accounts[id].AccountName + "\n"
-			printable_data += "Username: " + accounts[id].UserName + "\n"
-			printable_data += "Password: " + accounts[id].Password + "\n"
+			printableData += gpm.LineBreak()
+			printableData += "[" + strconv.Itoa(id+1) + "]" + "\t" + "Account: " + accounts[id].AccountName + "\n"
+			printableData += "Username: " + accounts[id].UserName + "\n"
+			printableData += "Password: " + accounts[id].Password + "\n"
 			if accounts[id].Email != "" {
-				printable_data += "Email: " + accounts[id].Email + "\n"
+				printableData += "Email: " + accounts[id].Email + "\n"
 			}
 			if accounts[id].Phone != "" {
-				printable_data += "Mobile no: " + accounts[id].Phone + "\n"
+				printableData += "Mobile no: " + accounts[id].Phone + "\n"
 			}
 			if accounts[id].Notes != "" {
-				printable_data += "Notes: " + accounts[id].Notes + "\n"
+				printableData += "Notes: " + accounts[id].Notes + "\n"
 			}
-			printable_data += gpm.LineBreak()
+			printableData += gpm.LineBreak()
 		}
-		printable_data += "\n"
-		err := gpm.ToPager(printable_data)
+		printableData += "\n"
+		err := gpm.ToPager(printableData)
 		if err != nil {
 			gpm.PagerErrorLogger(err)
 		}

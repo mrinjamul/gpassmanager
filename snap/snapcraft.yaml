@@ -1,6 +1,6 @@
 name: gpassmanager
 base: core18 # the base snap is the execution environment for this snap
-version: "1.0.2"
+version: "1.1.0"
 summary: CommandLine Password Manager
 description: |
   A Commandline application for managing your passwords securely.
