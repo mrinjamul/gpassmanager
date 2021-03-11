@@ -1,5 +1,5 @@
 /*
-Copyright © 2020 Injamul Mohammad Mollah
+Copyright © 2020-2021 Injamul Mohammad Mollah
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -55,7 +55,9 @@ func removeRun(cmd *cobra.Command, args []string) {
 			color.Red(args[arg] + " is not a valid id\ninvalid syntax")
 			os.Exit(0)
 		}
-		rmList = append(rmList, i)
+		if i > 0 {
+			rmList = append(rmList, i)
+		}
 	}
 	// sort and remove duplicate
 	rmList = gpm.SortSlice(rmList)

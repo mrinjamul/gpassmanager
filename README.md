@@ -41,8 +41,8 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 For Linux,
 
 ```sh
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.2/gpassmanager-linux-amd64-v1.0.2.tar.gz
-tar xvf gpassmanager-linux-amd64-v1.0.2.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.1.0/gpassmanager-linux-amd64-v1.1.0.tar.gz
+tar xvf gpassmanager-linux-amd64-v1.1.0.tar.gz
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
@@ -55,13 +55,13 @@ You need to have `tar wget`. To install simply type `pkg install tar wget`
 
 ```sh
 cd ~
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.2/gpassmanager-linux-arm-v1.0.2.tar.gz
-tar xvf gpassmanager-linux-arm-v1.0.2.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.1.0/gpassmanager-linux-arm-v1.1.0.tar.gz
+tar xvf gpassmanager-linux-arm-v1.1.0.tar.gz
 chmod +x gpassmanager
 mv gpassmanager ../usr/bin
 ```
 
-[Note: if new version available you need to download and install by the same process. The above instructions will install v1.0.2 .]
+[Note: if new version available you need to download and install by the same process. The above instructions will install v1.1.0 .]
 
 ## Usage
 
@@ -74,6 +74,7 @@ mv gpassmanager ../usr/bin
     Available Commands:
     add         Add new password
     change      Change Master Password
+    edit        Edit a account details
     export      export your data to a file (master key will be also exported)
     generate    Generate secure password
     help        Help about any command
@@ -86,7 +87,6 @@ mv gpassmanager ../usr/bin
     view        view all passwords
 
     Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
     -h, --help            help for gpassmanager
 
     Use "gpassmanager [command] --help" for more information about a command.

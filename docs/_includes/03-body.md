@@ -13,8 +13,8 @@ Using Go Password Manager is easy. First, use `go get` to install the latest ver
 For Linux,
 
 ```sh
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.2/gpassmanager-linux-amd64-v1.0.2.tar.gz
-tar xvf gpassmanager-linux-amd64-v1.0.2.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.1.0/gpassmanager-linux-amd64-v1.1.0.tar.gz
+tar xvf gpassmanager-linux-amd64-v1.1.0.tar.gz
 chmod +x gpassmanager
 sudo mv gpassmanager /usr/bin
 ```
@@ -27,13 +27,13 @@ You need to have `tar wget`. To install simply type `pkg install tar wget`
 
 ```sh
 cd ~
-wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.0.2/gpassmanager-linux-arm-v1.0.2.tar.gz
-tar xvf gpassmanager-linux-arm-v1.0.2.tar.gz
+wget https://github.com/mrinjamul/gpassmanager/releases/download/v1.1.0/gpassmanager-linux-arm-v1.1.0.tar.gz
+tar xvf gpassmanager-linux-arm-v1.1.0.tar.gz
 chmod +x gpassmanager
 mv gpassmanager ../usr/bin
 ```
 
-[Note: if new version available you need to download and install by the same process. The above instructions will install v1.0.2 .]
+[Note: if new version available you need to download and install by the same process. The above instructions will install v1.1.0 .]
 
 ## Get Started
 
@@ -46,6 +46,7 @@ mv gpassmanager ../usr/bin
     Available Commands:
     add         Add new password
     change      Change Master Password
+    edit        Edit a account details
     export      export your data to a file (master key will be also exported)
     generate    Generate secure password
     help        Help about any command
@@ -58,7 +59,6 @@ mv gpassmanager ../usr/bin
     view        view all passwords
 
     Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
     -h, --help            help for gpassmanager
 
     Use "gpassmanager [command] --help" for more information about a command.
@@ -74,9 +74,6 @@ mv gpassmanager ../usr/bin
     Flags:
     -h, --help   help for help
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
-
 ## Add
 
     Add new password
@@ -86,9 +83,6 @@ mv gpassmanager ../usr/bin
 
     Flags:
     -h, --help   help for add
-
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
 
 ## View
 
@@ -103,9 +97,6 @@ mv gpassmanager ../usr/bin
     -a, --all    view all passwords in the store
     -h, --help   help for view
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
-
 ## Remove
 
     remove an Account from password manager
@@ -119,8 +110,18 @@ mv gpassmanager ../usr/bin
     Flags:
     -h, --help   help for remove
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
+## Edit
+
+    Edit a account details
+
+    Usage:
+    gpassmanager edit [flags]
+
+    Aliases:
+    edit, ed, modify
+
+    Flags:
+    -h, --help   help for edit
 
 ## Search
 
@@ -131,9 +132,6 @@ mv gpassmanager ../usr/bin
 
     Flags:
     -h, --help   help for search
-
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
 
 ## Change Password
 
@@ -147,9 +145,6 @@ mv gpassmanager ../usr/bin
     -h, --help     help for change
     -p, --passwd   change master key for the Data
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
-
 ## Reset
 
     It's like a hard reset.
@@ -161,9 +156,6 @@ mv gpassmanager ../usr/bin
     Flags:
     -h, --help      help for reset
     -r, --restore   restore last reset database
-
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
 
 ## Generate
 
@@ -178,9 +170,6 @@ mv gpassmanager ../usr/bin
     Flags:
     -h, --help   help for generate
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
-
 ## License
 
     Print the license
@@ -191,9 +180,6 @@ mv gpassmanager ../usr/bin
     Flags:
     -h, --help   help for license
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
-
 ## Version
 
     Prints version
@@ -203,9 +189,6 @@ mv gpassmanager ../usr/bin
 
     Flags:
     -h, --help   help for version
-
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
 
 ## Export
 
@@ -219,9 +202,6 @@ mv gpassmanager ../usr/bin
     Flags:
     -h, --help   help for export
 
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)
-
 ## Import
 
     gpassmanager import "[file location]"
@@ -232,6 +212,3 @@ mv gpassmanager ../usr/bin
     Flags:
     -c, --csv    Import CSV file into the password manager (Currently Google password csv file is supported)
     -h, --help   help for import
-
-    Global Flags:
-        --config string   config file (default is $HOME/.gpassmanager.yaml)

@@ -1,6 +1,6 @@
 // Package cmd ...
 /*
-Copyright © 2020 Injamul Mohammad Mollah
+Copyright © 2020-2021 Injamul Mohammad Mollah
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -59,8 +59,9 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gpassmanager.yaml)")
+	//
+	// Uncomment below line to enable configurable app
+	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gpassmanager.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.

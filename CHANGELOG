@@ -1,0 +1,72 @@
+v1.1.0
+Changelog:
+    new command edit
+    Improve codebase
+
+v1.0.2
+Changelog:
+    Improve search cmd
+
+v1.0.1
+Changelog:
+    minor changes
+
+v1.0.0
+Changelog:
+    #10 use pager for viewing password
+    minor changes
+
+
+v0.7.1
+Changelog:
+    small changes
+
+
+v0.7.0
+Changelog:
+    reset & restore (redesigned)
+
+
+v0.6.0
+Changelog:
+    search command added
+    bug fixes and improved
+
+v0.5.0
+Changelog:
+    added a new feature (import CSV files) import -c
+    fixes
+    Now, you can import google-chrome passwords into gpassmanager using CSV file.
+
+
+v0.4.1
+Changelog:
+    new feature (batch deletion)
+    bug fixes
+
+v0.4.0
+Changelog:
+    New features (password generator)
+
+v0.3.1
+Changelog:
+    bug fixes
+
+v0.3.0
+Changelog:
+    new features added
+    fix errors
+
+v0.2.0
+Changelog:
+    new features added
+    fix typo and errors
+
+v0.1.0
+Changelog:
+    add export & import features
+    fix errors
+
+v0.0.1-beta
+Changelog:
+    gpassmanager version 0.0.1-beta
