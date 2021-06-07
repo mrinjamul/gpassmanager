@@ -2,7 +2,8 @@
 
 [![gpassmanager](https://snapcraft.io/gpassmanager/badge.svg)](https://snapcraft.io/gpassmanager)
 
-[![build status](https://github.com/mrinjamul/gpassmanager/workflows/Go/badge.svg)]()
+[![build status](https://github.com/mrinjamul/gpassmanager/workflows/test/badge.svg)]()
+[![build status](https://github.com/mrinjamul/gpassmanager/workflows/release/badge.svg)]()
 [![go version](https://img.shields.io/github/go-mod/go-version/mrinjamul/gpassmanager.svg)](https://github.com/mrinjamul/gpassmanager)
 [![GoReportCard](https://goreportcard.com/badge/github.com/mrinjamul/gpassmanager)](https://goreportcard.com/report/github.com/mrinjamul/gpassmanager)
 [![Code style: standard](https://img.shields.io/badge/code%20style-standard-blue.svg)]()
